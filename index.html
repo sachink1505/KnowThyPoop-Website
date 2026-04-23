@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Know Thy Poop — Your gut has opinions. Finally an app that listens.</title>
+<meta name="description" content="Track your poop, decode your gut. A tiny private app that turns your bathroom trips into a 0–100 gut-health score. Runs on AI. Does not judge." />
+<meta property="og:title" content="Know Thy Poop" />
+<meta property="og:description" content="Track your poop, decode your gut. Private. Fun. Actually useful." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://pooptracker.site" />
+<link rel="icon" href="/icon.svg" type="image/svg+xml" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  html,body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+  @keyframes wobble {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-8px) rotate(-6deg); }
+    75% { transform: translateY(-4px) rotate(6deg); }
+  }
+  .wobble { animation: wobble 2.4s ease-in-out infinite; transform-origin: center bottom; }
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .float-slow { animation: float-slow 5s ease-in-out infinite; }
+  .gradient-bg {
+    background:
+      radial-gradient(ellipse at top left, rgba(252, 211, 77, 0.35), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(217, 119, 6, 0.18), transparent 55%),
+      #fafaf9;
+  }
+  .shadow-soft { box-shadow: 0 10px 30px -12px rgba(120, 53, 15, 0.18); }
+  .tag-dot::before {
+    content: "";
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: #f59e0b;
+    border-radius: 9999px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body class="text-stone-800">
+
+<!-- Nav -->
+<nav class="sticky top-0 z-40 backdrop-blur bg-stone-50/80 border-b border-stone-100">
+  <div class="max-w-5xl mx-auto px-5 py-3 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 font-bold text-stone-800">
+      <span class="text-2xl">💩</span>
+      <span>Know Thy Poop</span>
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.pooptracker.site"
+       class="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-soft transition">
+      Download
+      <span aria-hidden>→</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="gradient-bg">
+  <div class="max-w-5xl mx-auto px-5 pt-16 pb-20 text-center">
+    <div class="inline-flex items-center gap-2 bg-white border border-stone-200 rounded-full px-3 py-1.5 text-xs font-medium text-stone-600 mb-8 shadow-soft">
+      <span class="tag-dot">Now in beta · Android</span>
+    </div>
+    <div class="text-7xl md:text-8xl mb-4 wobble inline-block">💩</div>
+    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-stone-900 mb-4">
+      Know Thy Poop.
+    </h1>
+    <p class="text-lg md:text-xl text-stone-600 max-w-xl mx-auto mb-8 leading-relaxed">
+      Your gut has been trying to tell you things. <br class="hidden sm:block" />
+      Finally — an app that listens. <span class="italic text-stone-500">(Without judgment.)</span>
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="https://play.google.com/store/apps/details?id=com.pooptracker.site"
+         class="inline-flex items-center gap-3 bg-stone-900 hover:bg-stone-800 text-white font-semibold px-6 py-4 rounded-2xl shadow-soft transition w-full sm:w-auto">
+        <svg viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor" aria-hidden>
+          <path d="M3.609 1.814 13.792 12 3.61 22.186a1.007 1.007 0 0 1-.309-.72V2.534c0-.275.12-.52.309-.72zM14.54 12 4.84 2.3l11.86 6.855L14.54 12zm2.16 3.85L4.84 22.7l9.7-9.7 2.16 2.85zm3.05-5.15 3.11 1.78c.48.27.48.95 0 1.22l-3.19 1.83L16.95 12l2.8-1.3z"/>
+        </svg>
+        Get it on Google Play
+      </a>
+      <a href="#how-it-works"
+         class="inline-flex items-center gap-2 text-stone-700 hover:text-amber-700 font-medium px-4 py-4 transition">
+        See how it works ↓
+      </a>
+    </div>
+    <p class="text-xs text-stone-400 mt-6">
+      Free. Private. Does <em>not</em> sell your poop data, we promise.
+    </p>
+  </div>
+</section>
+
+<!-- What it does -->
+<section class="max-w-5xl mx-auto px-5 py-20">
+  <div class="text-center mb-12">
+    <p class="text-xs font-bold text-amber-700 tracking-widest uppercase mb-2">What it does</p>
+    <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900">
+      Three things. No filler.
+    </h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="bg-white rounded-3xl p-6 border border-stone-100 shadow-soft">
+      <div class="text-5xl mb-4">📸</div>
+      <h3 class="font-bold text-lg mb-2">Snap it.</h3>
+      <p class="text-stone-600 leading-relaxed">
+        Optional photo. AI reads form, colour, texture. Fills the form for you.
+      </p>
+    </div>
+    <div class="bg-white rounded-3xl p-6 border border-stone-100 shadow-soft">
+      <div class="text-5xl mb-4">🧪</div>
+      <h3 class="font-bold text-lg mb-2">Score it.</h3>
+      <p class="text-stone-600 leading-relaxed">
+        0–100 gut-health score from six Bristol-backed traits. Same formula for everyone.
+      </p>
+    </div>
+    <div class="bg-white rounded-3xl p-6 border border-stone-100 shadow-soft">
+      <div class="text-5xl mb-4">📈</div>
+      <h3 class="font-bold text-lg mb-2">See patterns.</h3>
+      <p class="text-stone-600 leading-relaxed">
+        Timing, duration, gaps between poops. Your gut rhythm on a chart.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Why track section — sarcastic -->
+<section class="bg-stone-900 text-stone-100">
+  <div class="max-w-4xl mx-auto px-5 py-20 text-center">
+    <p class="text-xs font-bold text-amber-400 tracking-widest uppercase mb-3">Wait, why?</p>
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-6">
+      Because <span class="line-through text-stone-500">"I think I'm fine"</span><br />
+      <span class="text-amber-400">is not a diagnosis.</span>
+    </h2>
+    <p class="text-stone-300 text-lg leading-relaxed max-w-2xl mx-auto">
+      Your poop is the most ignored health signal you produce every single day.
+      Colour, shape, frequency, urgency — every one of them is a data point.
+      Know Thy Poop turns that data into actually useful insights.
+    </p>
+    <div class="grid sm:grid-cols-3 gap-4 mt-12 text-left">
+      <div class="bg-stone-800/60 rounded-2xl p-5 border border-stone-700/50">
+        <div class="text-3xl mb-2">🩺</div>
+        <p class="text-sm text-stone-300 leading-relaxed">
+          Your doctor asks "how's it been?" — now you have an actual answer.
+        </p>
+      </div>
+      <div class="bg-stone-800/60 rounded-2xl p-5 border border-stone-700/50">
+        <div class="text-3xl mb-2">🥗</div>
+        <p class="text-sm text-stone-300 leading-relaxed">
+          Spot what that fibre change / new supplement / late-night biryani did.
+        </p>
+      </div>
+      <div class="bg-stone-800/60 rounded-2xl p-5 border border-stone-700/50">
+        <div class="text-3xl mb-2">🧘</div>
+        <p class="text-sm text-stone-300 leading-relaxed">
+          Notice stress spikes, travel disruption, dehydration — before they escalate.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features grid -->
+<section class="max-w-5xl mx-auto px-5 py-20">
+  <div class="text-center mb-12">
+    <p class="text-xs font-bold text-amber-700 tracking-widest uppercase mb-2">Features</p>
+    <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900">
+      Tiny app. Packed with stuff.
+    </h2>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="bg-amber-50 rounded-3xl p-5 border border-amber-100">
+      <div class="text-3xl mb-2">🎨</div>
+      <p class="font-semibold text-stone-800">Picture-based pickers</p>
+      <p class="text-sm text-stone-600 mt-1">Colour swatches, emoji tiles, Bristol icons. No jargon.</p>
+    </div>
+    <div class="bg-stone-100 rounded-3xl p-5 border border-stone-200">
+      <div class="text-3xl mb-2">⏱</div>
+      <p class="font-semibold text-stone-800">Poop stopwatch</p>
+      <p class="text-sm text-stone-600 mt-1">Times your session. Keeps running if you minimise.</p>
+    </div>
+    <div class="bg-emerald-50 rounded-3xl p-5 border border-emerald-100">
+      <div class="text-3xl mb-2">🔔</div>
+      <p class="font-semibold text-stone-800">Daily reminder</p>
+      <p class="text-sm text-stone-600 mt-1">A gentle nudge at your favourite hour. No spam.</p>
+    </div>
+    <div class="bg-sky-50 rounded-3xl p-5 border border-sky-100">
+      <div class="text-3xl mb-2">📊</div>
+      <p class="font-semibold text-stone-800">Stats you'll read</p>
+      <p class="text-sm text-stone-600 mt-1">Timing histogram, average gap, average duration.</p>
+    </div>
+    <div class="bg-rose-50 rounded-3xl p-5 border border-rose-100">
+      <div class="text-3xl mb-2">🔒</div>
+      <p class="font-semibold text-stone-800">Private by default</p>
+      <p class="text-sm text-stone-600 mt-1">Your data is yours. We don't sell or share it.</p>
+    </div>
+    <div class="bg-violet-50 rounded-3xl p-5 border border-violet-100">
+      <div class="text-3xl mb-2">🧠</div>
+      <p class="font-semibold text-stone-800">AI image analysis</p>
+      <p class="text-sm text-stone-600 mt-1">Optional. Reads form, colour, texture. Fills the form.</p>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section id="how-it-works" class="gradient-bg">
+  <div class="max-w-5xl mx-auto px-5 py-20">
+    <div class="text-center mb-12">
+      <p class="text-xs font-bold text-amber-700 tracking-widest uppercase mb-2">How it works</p>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900">
+        Four taps. Done.
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-4 gap-5">
+      <div class="bg-white rounded-3xl p-6 border border-stone-100 shadow-soft text-center">
+        <div class="text-4xl mb-3">1️⃣</div>
+        <p class="font-semibold">Install.</p>
+        <p class="text-sm text-stone-500 mt-1">Android only, for now.</p>
+      </div>
+      <div class="bg-white rounded-3xl p-6 border border-stone-100 shadow-soft text-center">
+        <div class="text-4xl mb-3">2️⃣</div>
+        <p class="font-semibold">Log a poop.</p>
+        <p class="text-sm text-stone-500 mt-1">Emoji pickers. Optional photo.</p>
+      </div>
+      <div class="bg-white rounded-3xl p-6 border border-stone-100 shadow-soft text-center">
+        <div class="text-4xl mb-3">3️⃣</div>
+        <p class="font-semibold">Get a score.</p>
+        <p class="text-sm text-stone-500 mt-1">Plus insights you can act on.</p>
+      </div>
+      <div class="bg-white rounded-3xl p-6 border border-stone-100 shadow-soft text-center">
+        <div class="text-4xl mb-3">4️⃣</div>
+        <p class="font-semibold">Repeat.</p>
+        <p class="text-sm text-stone-500 mt-1">Your gut levels up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="max-w-3xl mx-auto px-5 py-20">
+  <div class="text-center mb-10">
+    <p class="text-xs font-bold text-amber-700 tracking-widest uppercase mb-2">FAQ</p>
+    <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900">
+      The things you're thinking.
+    </h2>
+  </div>
+  <div class="space-y-3">
+    <details class="group bg-white rounded-2xl p-5 border border-stone-100 shadow-soft open:shadow-soft">
+      <summary class="flex justify-between items-center cursor-pointer list-none font-semibold text-stone-800">
+        Is this a joke?
+        <span class="text-amber-600 group-open:rotate-180 transition-transform">▾</span>
+      </summary>
+      <p class="text-stone-600 mt-3 leading-relaxed">
+        The interface is fun. The data is real. Bristol Stool Scale is a peer-reviewed clinical tool.
+        We just made it not feel like paperwork.
+      </p>
+    </details>
+    <details class="group bg-white rounded-2xl p-5 border border-stone-100 shadow-soft">
+      <summary class="flex justify-between items-center cursor-pointer list-none font-semibold text-stone-800">
+        Is my data private?
+        <span class="text-amber-600 group-open:rotate-180 transition-transform">▾</span>
+      </summary>
+      <p class="text-stone-600 mt-3 leading-relaxed">
+        Yes. Paranoid-level private. Stored encrypted. Only you can see it. Images use 60-second signed URLs.
+        We never sell, rent, or share your data. <a href="/privacy.html" class="underline text-amber-700">Full privacy policy</a>.
+      </p>
+    </details>
+    <details class="group bg-white rounded-2xl p-5 border border-stone-100 shadow-soft">
+      <summary class="flex justify-between items-center cursor-pointer list-none font-semibold text-stone-800">
+        Is this medical advice?
+        <span class="text-amber-600 group-open:rotate-180 transition-transform">▾</span>
+      </summary>
+      <p class="text-stone-600 mt-3 leading-relaxed">
+        Absolutely not. It's informational. If something seems off, see a doctor.
+        Don't diagnose yourself with an app.
+      </p>
+    </details>
+    <details class="group bg-white rounded-2xl p-5 border border-stone-100 shadow-soft">
+      <summary class="flex justify-between items-center cursor-pointer list-none font-semibold text-stone-800">
+        Why emojis?
+        <span class="text-amber-600 group-open:rotate-180 transition-transform">▾</span>
+      </summary>
+      <p class="text-stone-600 mt-3 leading-relaxed">
+        Because "Bristol Type 4, normal volume, mild odour" sounds like homework.
+        "👍 👍 🙂" takes two seconds.
+      </p>
+    </details>
+    <details class="group bg-white rounded-2xl p-5 border border-stone-100 shadow-soft">
+      <summary class="flex justify-between items-center cursor-pointer list-none font-semibold text-stone-800">
+        iOS when?
+        <span class="text-amber-600 group-open:rotate-180 transition-transform">▾</span>
+      </summary>
+      <p class="text-stone-600 mt-3 leading-relaxed">
+        Soon. Promise. Also: you can use the web app in any browser right now at
+        <a href="https://app.pooptracker.site" class="underline text-amber-700">app.pooptracker.site</a>.
+      </p>
+    </details>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-amber-500">
+  <div class="max-w-4xl mx-auto px-5 py-16 text-center">
+    <div class="text-6xl mb-4 float-slow inline-block">🚽</div>
+    <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 mb-3">
+      Your next poop wants to be logged.
+    </h2>
+    <p class="text-stone-800 mb-8 text-lg">Don't keep it waiting.</p>
+    <a href="https://play.google.com/store/apps/details?id=com.pooptracker.site"
+       class="inline-flex items-center gap-3 bg-stone-900 hover:bg-stone-800 text-white font-semibold px-8 py-4 rounded-2xl shadow-soft transition">
+      <svg viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor" aria-hidden>
+        <path d="M3.609 1.814 13.792 12 3.61 22.186a1.007 1.007 0 0 1-.309-.72V2.534c0-.275.12-.52.309-.72zM14.54 12 4.84 2.3l11.86 6.855L14.54 12zm2.16 3.85L4.84 22.7l9.7-9.7 2.16 2.85zm3.05-5.15 3.11 1.78c.48.27.48.95 0 1.22l-3.19 1.83L16.95 12l2.8-1.3z"/>
+      </svg>
+      Get it on Google Play
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-stone-900 text-stone-400">
+  <div class="max-w-5xl mx-auto px-5 py-12">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <div class="flex items-center gap-2 font-bold text-stone-100 text-lg">
+          <span class="text-2xl">💩</span>
+          <span>Know Thy Poop</span>
+        </div>
+        <p class="text-sm text-stone-500 mt-2 max-w-sm">
+          Track your poop. Know your gut. Live a little better.
+        </p>
+      </div>
+      <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <a href="/terms.html" class="hover:text-white transition">Terms</a>
+        <a href="/privacy.html" class="hover:text-white transition">Privacy</a>
+        <a href="https://app.pooptracker.site" class="hover:text-white transition">Open web app</a>
+        <a href="mailto:support@logio.app" class="hover:text-white transition">Support</a>
+      </nav>
+    </div>
+    <div class="mt-10 pt-6 border-t border-stone-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-stone-500">
+      <p>© 2026 Know Thy Poop. All rights reserved.</p>
+      <p>Made with 💩 and a lot of love.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
